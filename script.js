@@ -18,7 +18,7 @@ window.onclick = function (event) {
   }
 };
 
-// INTRO ANIMATION
+// INTRO ANIMATION SCRIPT
 const spans = document.querySelectorAll('.intro_text span');
 const delay = 500;
 
