@@ -268,3 +268,8 @@ body {
 .additional-info__languages-item {
   color: var(--secondary-text-color);
 }
+
+.additional-info__item-icon-wrapper {
+  margin-right: 10px;
+  width: 20px;
+}
