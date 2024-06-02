@@ -14,8 +14,11 @@ body {
   --secondary-text-color: #5c5c62;
   --durability-text-color: #6a737d9c;
   --icon-color: #6a737d;
+  --span-text-color: #ff0000;
+  --pet-icon-color: #5bd655;
   --border-color: #ff9a0045;
   --text-decoration-color: #ff9a00;
+  --basic-white-color: #ffffff;
 }
 
 .container {
@@ -89,13 +92,13 @@ body {
 }
 
 .contact-info__block {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: relative;
+  display: inline-block;
 }
 
 .contact-info__block--center {
   justify-content: center;
+  transition: border-color 0.3s ease;
 }
 
 .contact-info__item {
@@ -130,8 +133,63 @@ body {
   width: 100px;
   height: 100px;
   object-fit: cover;
+  border: transparent;
+  z-index: 1;
+}
+
+.contact-info__block--center::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
   border: 3px solid;
   border-color: var(--text-decoration-color);
+  animation: rotate-border 2s linear infinite, change-color 5s linear infinite;
+  box-sizing: border-box;
+}
+
+/* Tooltip */
+.contact-info__item .tooltip-target {
+  position: relative;
+  cursor: pointer;
+}
+
+.contact-info__item .tooltip-target::after {
+  content: 'Click me';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-text-color);
+  color: var(--basic-white-color);
+  padding: 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  margin-bottom: 5px;
+  z-index: 1;
+}
+
+.contact-info__item .tooltip-target:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Social text animation */
+.contact-info__item-text {
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.6s ease;
+}
+
+.contact-info__item:hover .contact-info__item-text {
+  color: var(--span-text-color);
+  transform: rotate(360deg);
 }
 
 /* Intro and skills styles */
@@ -162,18 +220,39 @@ body {
   text-align: justify;
 }
 
+.intro_text span {
+  opacity: 0;
+  animation: appear 1s forwards;
+  transition: opacity 1s, visibility 1s;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .skills__header {
   color: var(--secondary-text-color);
   text-align: center;
-  margin-bottom: 15px;
 }
 
 .skills__text {
   color: var(--secondary-text-color);
   text-align: justify;
 }
+.skills__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
 
-/* Experience and additional info styles */
+.skills__wrapper {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+/* Experience styles */
 
 .experiences {
   flex: 1 1 60%;
@@ -224,6 +303,8 @@ body {
   padding-left: 20px;
 }
 
+/* Additional info styles */
+
 .additional-info {
   flex: 1 1 40%;
 }
@@ -267,4 +348,118 @@ body {
 
 .additional-info__languages-item {
   color: var(--secondary-text-color);
+}
+
+.additional-info__item-icon-wrapper {
+  margin-right: 10px;
+  width: 20px;
+}
+
+.additional-info__pet-icon {
+  scale: 1;
+}
+.additional-info__pet-icon:hover,
+.additional-info__pet-icon:focus {
+  scale: 1.3;
+}
+
+.additional-info__pet-icon:hover path,
+.additional-info__pet-icon:focus path {
+  fill: var(--pet-icon-color);
+}
+
+/* MODAL styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  min-height: 300px;
+  border-radius: 10px;
+}
+
+.modal-content__map-wrapper {
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+}
+
+.modal-content__title {
+  font-size: large;
+  font-weight: 700;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  outline: none;
+  padding: 4px;
+  border-radius: 10px;
+  border: none;
+  width: 40px;
+  height: 40px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* KEYFRAMES */
+
+@keyframes rotate-border {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes change-color {
+  0% {
+    border-color: red;
+  }
+  25% {
+    border-color: blue;
+  }
+  50% {
+    border-color: green;
+  }
+  75% {
+    border-color: yellow;
+  }
+  100% {
+    border-color: red;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
