@@ -18,7 +18,7 @@ window.onclick = function (event) {
   }
 };
 
-// INTRO ANIMATION
+// INTRO ANIMATION SCRIPT
 const spans = document.querySelectorAll('.intro_text span');
 const delay = 500;
 
@@ -30,7 +30,7 @@ spans.forEach((span, index) => {
   span.style.animationDelay = `${index * delay}ms`;
 });
 
-// AUDIO
+// AUDIO SCRIPTS
 const playBookSound = document.getElementById('play-book');
 const clickBookSound = document.getElementById('click-book');
 const playGameSound = document.getElementById('play-game');
@@ -93,4 +93,3 @@ function isDescendantOrSelf(element, ancestor) {
   }
   return false;
 }
-
