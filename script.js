@@ -1,3 +1,4 @@
+// MODAL AND MAP
 const modal = document.getElementById('map-modal');
 const openLink = document.getElementById('openModalBtn');
 const closeBtn = document.getElementsByClassName('close-btn')[0];
@@ -16,4 +17,16 @@ window.onclick = function (event) {
     modal.style.display = 'none';
   }
 };
+
+// INTRO ANIMATION
+const spans = document.querySelectorAll('.intro_text span');
+const delay = 500;
+
+spans.forEach((span, index) => {
+  setTimeout(() => {
+    span.style.opacity = '1';
+  }, (index + 1) * delay);
+
+  span.style.animationDelay = `${index * delay}ms`;
+});
 
