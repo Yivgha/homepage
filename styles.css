@@ -226,15 +226,30 @@ body {
   transition: opacity 1s, visibility 1s;
 }
 
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .skills__header {
   color: var(--secondary-text-color);
   text-align: center;
-  margin-bottom: 15px;
 }
 
 .skills__text {
   color: var(--secondary-text-color);
   text-align: justify;
+}
+.skills__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.skills__wrapper {
+  display: inline-flex;
+  flex-direction: row;
 }
 
 /* Experience styles */
