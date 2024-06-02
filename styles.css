@@ -14,9 +14,11 @@ body {
   --secondary-text-color: #5c5c62;
   --durability-text-color: #6a737d9c;
   --icon-color: #6a737d;
+  --span-text-color: #ff0000;
   --pet-icon-color: #5bd655;
   --border-color: #ff9a0045;
   --text-decoration-color: #ff9a00;
+  --basic-white-color: #ffffff;
 }
 
 .container {
@@ -96,6 +98,7 @@ body {
 
 .contact-info__block--center {
   justify-content: center;
+  transition: border-color 0.3s ease;
 }
 
 .contact-info__item {
@@ -148,31 +151,45 @@ body {
   box-sizing: border-box;
 }
 
-@keyframes rotate-border {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+/* Tooltip */
+.contact-info__item .tooltip-target {
+  position: relative;
+  cursor: pointer;
 }
 
-@keyframes change-color {
-  0% {
-    border-color: red;
-  }
-  25% {
-    border-color: blue;
-  }
-  50% {
-    border-color: green;
-  }
-  75% {
-    border-color: yellow;
-  }
-  100% {
-    border-color: red;
-  }
+.contact-info__item .tooltip-target::after {
+  content: 'Click me';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-text-color);
+  color: var(--basic-white-color);
+  padding: 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  margin-bottom: 5px;
+  z-index: 1;
+}
+
+.contact-info__item .tooltip-target:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Social text animation */
+.contact-info__item-text {
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.6s ease;
+}
+
+.contact-info__item:hover .contact-info__item-text {
+  color: var(--span-text-color);
+  transform: rotate(360deg);
 }
 
 /* Intro and skills styles */
@@ -384,4 +401,33 @@ body {
   color: red;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* KEYFRAMES */
+
+@keyframes rotate-border {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes change-color {
+  0% {
+    border-color: red;
+  }
+  25% {
+    border-color: blue;
+  }
+  50% {
+    border-color: green;
+  }
+  75% {
+    border-color: yellow;
+  }
+  100% {
+    border-color: red;
+  }
 }

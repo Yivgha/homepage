@@ -1,4 +1,4 @@
-const modal = document.getElementById('myModal');
+const modal = document.getElementById('map-modal');
 const openLink = document.getElementById('openModalBtn');
 const closeBtn = document.getElementsByClassName('close-btn')[0];
 
